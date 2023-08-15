@@ -11,6 +11,7 @@
   "dependencies": {
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.27",
+    "uuid": "^9.0.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {

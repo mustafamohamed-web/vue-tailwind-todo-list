@@ -10,7 +10,6 @@
 
 <script setup>
 const props = defineProps({
-  tasks: Array, // Declare the prop
+  tasks: Array,
 });
-console.log(props.tasks);
 </script>
