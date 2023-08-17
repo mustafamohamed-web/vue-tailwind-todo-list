@@ -3,12 +3,22 @@
     <div
       v-for="task in items"
       :key="task.id"
-      class="flex items-center justify-between text-white border border-black rounded p-5 mt-5"
-      :style="{ backgroundColor: task.color }"
+      class="flex flex-col justify-center bg-slate-600 text-blacks border border-black rounded p-5 mt-5"
       :class="{ 'opacity-50': task.done }"
+      :style="{ background: priorityBg(task.priority) }"
     >
-      <h1 :class="{ 'line-through': task.done }">{{ task.name }}</h1>
-      <div class="flex">
+      <div class="flex flex-col justify-between">
+        <h1 class="font-bold capitalize" :class="{ 'line-through': task.done }">
+          {{ task.name }}
+        </h1>
+        <p>{{ task.description }}</p>
+        <p>{{ task.date }}</p>
+        <p class="rounded text-black font-bold">
+          {{ task.priority }}
+        </p>
+      </div>
+
+      <div class="flex justify-center gap-3">
         <input type="checkbox" v-model="task.done" class="mr-2" />
         <img
           src="../icons8-delete-button.svg"
@@ -45,4 +55,14 @@ const deleteTask = (id) => {
     console.log("no tasks");
   }
 };
+const priorityBg = (priority) => {
+  if (priority === "Low") {
+    return "grey";
+  } else if (priority === "Medium") {
+    return "orange";
+  } else {
+    return "#A52A2A";
+  }
+};
+console.log(props.tasks);
 </script>
