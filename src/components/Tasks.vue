@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-4 grid-rows-6 gap-4 mx-5">
     <div
-      v-for="task in items"
+      v-for="task in filterPriority"
       :key="task.id"
       class="flex flex-col justify-center bg-slate-600 text-blacks border border-black rounded p-5 mt-5"
       :class="{ 'opacity-50': task.done }"
@@ -29,7 +29,7 @@
       </div>
     </div>
   </div>
-  <NoTasksModal :tasks="tasks" />
+  <!-- <NoTasksModal :tasks="tasks" /> -->
 </template>
 
 <script setup>
@@ -37,7 +37,7 @@ import NoTasksModal from "./NoTasksModal.vue";
 import { ref } from "vue";
 
 const props = defineProps({
-  tasks: Array,
+  filterPriority: Array,
   getRandomColour: Function,
 });
 

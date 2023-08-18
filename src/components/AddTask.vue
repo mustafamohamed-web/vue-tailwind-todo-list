@@ -1,11 +1,16 @@
 <template>
   <div class="flex flex-col items-center mt-5">
     <div class="flex w-full justify-center">
-      <input
-        type="text"
+      <select
+        v-model="selectedPriority"
         class="border w-1/4 border-black rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        placeholder="Add Task"
-      />
+      >
+        <option value=""></option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+
       <img
         src="../icons8-plus.svg"
         @click="toggleModal"
@@ -15,7 +20,7 @@
     </div>
   </div>
   <Modal v-if="isModal" :tasks="tasks" />
-  <Tasks :tasks="tasks" />
+  <Tasks :filterPriority="filterPriority" />
 </template>
 
 <script setup>
@@ -25,6 +30,22 @@ import Modal from "./Modal.vue";
 
 const tasks = ref([]);
 const isModal = ref(false);
+const selectedPriority = ref("");
+
+console.log("selectedPriority:", selectedPriority.value);
+
+const filterPriority = computed(() => {
+  if (selectedPriority.value === "") {
+    return tasks.value;
+  } else {
+    console.log;
+    const filter = tasks.value.filter(
+      (item) => item.priority === selectedPriority.value
+    );
+    return filter;
+  }
+});
+console.log("filterPriority:", filterPriority.value);
 
 const toggleModal = () => {
   isModal.value = !isModal.value;
