@@ -1,25 +1,19 @@
 <template>
   <div class="flex flex-col items-center mt-5">
     <div class="flex w-full justify-center">
-      <select
+      <input
         v-model="selectedPriority"
         class="border w-1/4 border-black rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-      >
-        <option value=""></option>
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-      </select>
-
+      />
       <img
         src="../icons8-plus.svg"
         @click="toggleModal"
-        class="cursor-pointer h-10 w-10"
+        class="cursor-pointer h-10 w-10 bg-white"
         alt=""
       />
     </div>
   </div>
-  <Modal v-if="isModal" :tasks="tasks" />
+  <Modal :tasks="tasks" />
   <Tasks :filterPriority="filterPriority" />
 </template>
 
